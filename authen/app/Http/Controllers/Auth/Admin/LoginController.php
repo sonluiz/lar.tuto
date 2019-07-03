@@ -9,6 +9,7 @@ class LoginController extends Controller
 {
     //phuong thuc này tra về view để đăng nhập admin
     public function login(){
+        return view('admin.auth.login');
 
     }
 
