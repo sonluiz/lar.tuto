@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
+    public function __construct()
+    {
+        $this ->middleware('auth:admin');
+    }
+
+
     // tạo controller bằng câu lệnh php artisan make:controller namecontroller
     public function index(){
         //phương thức trả về view đang nhap thanh công
@@ -33,7 +40,7 @@ class AdminController extends Controller
         $adminmodel->email = $request->email;
         $adminmodel->password = bcrypt($request->password); //ham để mã hóa mật khẩu
 
-        return redirect()->route();
+        return redirect()->route('admin.auth.login');
 
 
     }

@@ -11,6 +11,14 @@
 |
 */
 
+//gọi view trong laravel
+Route::get('/', function () {
+    return view('welcome');
+    //tra ve view welcome trong resoure->view ->welcome.blade.php
+});
+Auth::routes();
+Route::get('/home','HomeController@index')->name('home');
+
 //route cho admintration
 Route::prefix('admin')->group(function (){
     //gom nhóm group cho phần admin
@@ -61,55 +69,10 @@ Route::prefix('admin')->group(function (){
 
 
 
-//gọi view trong laravel
-Route::get('/', function () {
-    return view('welcome');
-    //tra ve view welcome trong resoure->view ->welcome.blade.php
-});
-Route::get('view/sonhong/{son}', function ($son){
-    return view('son.login', ['son' => $son]);
-});
-Route::get('toidicode', function (){
-    return view('toidicode');
-});
 
-//GET
-Route::get('sonhong',function (){
-    echo "chào các bạn cuộc sống thật nhat";
-});
-Route::get('sonhong/{ten}',function ($ten){
-    echo "chào các bạn cuộc sống thật nhat: ".$ten;
-})->where(['ten'=>'[a-z]']);
-Route::get('sonhong/{ten}/{tuoi}',function ($ten,$tuoi){
-    echo "chào các bạn tên: ".$ten ." tuôi là: ".$tuoi;
-})->where(['ten'=>'[a-z]+', 'tuoi'=>'[0-9]+']);
 
-//dinh danh
-Route::get('router1',['as'=>'myrouter',function(){
-    echo "xin chào các bạn";
-}]);
 
-Route::get('phuongthucgeturl','Mycontroller@geturl');
 
-//khi goi đến /goiten nó sẽ chạy đên router1 bang dinh danh
-Route::get('goiten',function (){
-    return redirect()->route('myrouter');
-
-});
-
-//group
-Route::group(['prefix' => 'user'], function(){
-    Route::get('bai1', function (){
-        echo "Bài 1.";
-    });
-    Route::get('bai2/laravel', function (){
-        echo "Bài 2.";
-    });
-    Route::get('bai3', function (){
-        echo "Bài 3.";
-    });
-
-});
 
 //goi controller
 Route::get('goicontroller','Mycontroller@xinchao');

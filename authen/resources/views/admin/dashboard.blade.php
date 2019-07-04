@@ -1,7 +1,24 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: ABC
- * Date: 7/2/2019
- * Time: 11:20 PM
- */
+@extends('qdmin.layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Dashboard Admin</div>
+
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        ban da dang nhap thanh cong
+
+                        You are logged in!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
