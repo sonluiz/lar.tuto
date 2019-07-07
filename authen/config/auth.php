@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -12,12 +10,10 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
-
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -34,31 +30,44 @@ return [
     | Supported: "session", "token"
     |
     */
-
     'guards' => [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
-
+            'hash' => false,
         ],
-
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-
         'admin-api' => [
             'driver' => 'token',
             'provider' => 'admins',
-
+            'hash' => false,
+        ],
+        'seller' => [
+            'driver' => 'session',
+            'provider' => 'sellers',
+        ],
+        'seller-api' => [
+            'driver' => 'token',
+            'provider' => 'sellers',
+            'hash' => false,
+        ],
+        'shipper' => [
+            'driver' => 'session',
+            'provider' => 'sellers',
+        ],
+        'shipper-api' => [
+            'driver' => 'token',
+            'provider' => 'sellers',
+            'hash' => false,
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -75,7 +84,6 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
@@ -83,15 +91,21 @@ return [
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' =>App\Model\AdminModel::class,
+            'model' => App\Model\AdminModel::class,
         ],
-
+        'sellers' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\SellerModel::class,
+        ],
+        'shippers' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\ShipperModel::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
@@ -106,7 +120,6 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
-
     'passwords' => [
         'users' => [
             'provider' => 'users',
@@ -117,7 +130,16 @@ return [
             'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 15,
-        ]
+        ],
+        'sellers' => [
+            'provider' => 'sellers',
+            'table' => 'password_resets',
+            'expire' => 15,
+        ],
+        'shippers' => [
+            'provider' => 'shippers',
+            'table' => 'password_resets',
+            'expire' => 15,
+        ],
     ],
-
 ];
